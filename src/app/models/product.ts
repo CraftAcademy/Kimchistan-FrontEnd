@@ -22,4 +22,7 @@ export class Product extends JsonApiModel {
   @Attribute()
   status: boolean;
 
+  @Attribute()
+  ingredients: string;
+
 }

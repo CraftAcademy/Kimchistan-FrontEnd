@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 centered" *ngFor="let product of products">
-      <h1>{{product.name}} {{product.price}}:-</h1>
-      <!--<h1>{{product.description}}</h1>-->
-      <img class="product_image" src={{product.image}} />
-      <!--<h1>{{product.type}}</h1>-->
-      <!--<h1>{{product.status}}</h1>-->
+      <div *ngIf="product.type == 'dish'">
+        <h1>{{product.name}} {{product.price}}:-</h1>
+        <!--<h1>{{product.description}}</h1>-->
+        <img class="product_image" src={{product.image}}/>
+        <!--<h1>{{product.type}}</h1>-->
+        <!--<h1>{{product.status}}</h1>-->
+      </div>
     </div>
   </div>
 </div>
