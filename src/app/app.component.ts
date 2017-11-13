@@ -12,7 +12,8 @@ export class AppComponent {
   products: Product[];
   lat: number = 59.334248;
   lng: number = 18.063829;
-
+  cart: any = [];
+  total_price: number;
   constructor(private productService: ProductService,
               private cartSVC: ShoppingCartService) {
     this.getProducts();
@@ -33,6 +34,11 @@ export class AppComponent {
       price = p_price;
     }
     this.cartSVC.addToCart(p_id, p_name, price, i_id, i_name);
+    this.showProducts();
+  }
 
+  showProducts() {
+        this.cart = this.cartSVC.showAll();
+        this.total_price = this.cartSVC.showTotal();
   }
 }

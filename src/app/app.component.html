@@ -1,18 +1,17 @@
-<a href="#demo" data-toggle="collapse">Collapsible</a>
-
-<div id="demo" class="collapse">
-  Lorem ipsum dolor text....
-</div>
-
 <nav class="fixed-header">
   <div class="container-fluid">
     <div class="header-text">
+      <a href="#demo" data-toggle="collapse">Collapsible</a>
+
+      <div id="demo" class="collapse">
+        Lorem ipsum dolor text....
+      </div>
       <div *ngFor="let item of cart">
-        {{item.product_name}} with {{item.ingredient_name}} ({{item.amount}})
-         Total price: {{item.price}} kr
+        {{item.product_name}} with {{item.ingredient_name}} ({{item.price}})  (amount:)
         <!--<div *ngIf="item == ''">-->
         <!--</div>-->
       </div>
+      Total price: {{total_price}} kr
     </div>
   </div>
 </nav>
