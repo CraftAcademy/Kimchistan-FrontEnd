@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 
 export class ShoppingCartService {
   cart: any = [];
-  total_price: number = 0;
+
   addToCart(p_id: string, p_name: string, price: number, i_id: string, i_name: string) {
 
     this.cart.push({
@@ -18,15 +18,15 @@ export class ShoppingCartService {
   }
 
   showAll() {
-    return this.cart
+    return this.cart;
   }
 
   showTotal() {
-    // let total_price = 0;
+    let total_price = 0;
     this.cart.forEach(function(obj){
-      this.total_price += obj.price;
-      console.log("this is inside" + this.total_price)
-    }
-    console.log("this is outside" + this.total_price);
-  }
+      total_price += obj.price;
+    };
+    console.log(total_price);
+    return total_price;
+  };
 }
