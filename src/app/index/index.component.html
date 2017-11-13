@@ -1,0 +1,107 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img class="logo" src="/assets/kimchistan.jpg">
+    </div>
+  </div>
+  <div class="header-text">
+    <div class="row row-bottom-margin">
+      <div class="col">
+        <h5>Mån-Fre 11-19</h5>
+        <h5>Lör: 12-16.30</h5>
+        <h5>Beställ mellan 11-18:30</h5>
+      </div>
+      <div class="col">
+        <h5>Beställ så här:</h5>
+        <h5>Välj mat & dryck i dropdown-menyerna</h5>
+        <h5>Lägg beställningen högst upp på sidan</h5>
+        <h5>Hämta beställingen efter 30 minuter</h5>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 centered">
+      <h3>Sallad</h3>
+      <img class="sidedish_image"
+           src="https://www.kitchensanctuary.com/wp-content/uploads/2017/02/Korean-Beef-Bulgogi-Bowl-recipe-square-FS.jpg"/>
+      <br>
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Välj Sallad</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <div *ngFor="let product of products">
+            <div *ngIf="product.type == 'salad'">
+              <button type="button" class="dropdown-item"
+                      (click)="addProduct(product.id, product.name, product.price)">{{product.name}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 centered">
+      <h3>Dryck</h3>
+      <img class="sidedish_image"
+           src="https://pbs.twimg.com/profile_images/770467680012890112/kSz1jtnn.jpg"/>
+      <br>
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Välj Dryck</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <div *ngFor="let product of products">
+            <div *ngIf="product.type == 'drink'">
+              <button type="button" class="dropdown-item"
+                      (click)="addProduct(product.id, product.name, product.price)">{{product.name}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 centered" *ngFor="let product of products">
+      <div *ngIf="product.type == 'dish'">
+        <h3>{{product.name}}</h3>
+        <img class="product_image" data-toggle="modal" attr.data-target="#productModal{{product.id}}"
+             src={{product.image}}/>
+        <br>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Välj Protein</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <div *ngFor="let ingredient of product.ingredients">
+              <button type="button" class="dropdown-item"
+                      (click)="addProduct(product.id, product.name, product.price, ingredient.id, ingredient.name, ingredient.price)">
+                {{ingredient.name}}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="productModal{{product.id}}" tabindex="-1" role="dialog"
+             aria-labelledby="productCloseup" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <img class="img-responsive large_product_image" src={{product.image}} alt="Product Image"/>
+            <div class="product-description">
+              {{product.description}}
+            </div>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]=15>
+  <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'../assets/circle.png'"></agm-marker>
+</agm-map>
+<footer class="footer">
+    <span class="footer-text">
+      <h5> Mån-Fre 11-19, Lör: 12-16.30 </h5>
+      <h5> Beställ mellan 11-18:30 </h5>
+      <h5> Telefon: 076-633 35 52 </h5>
+      <a target="_blank" href="https://goo.gl/maps/s523jHUZ3VL2"><h5> Sveavägen 13, 111 57 </h5></a>
+      <a target="_blank" href="https://www.facebook.com/kimchistan/"><i class="fa fa-facebook-square fa-4x" aria-hidden="true"></i></a>
+    </span>
+</footer>

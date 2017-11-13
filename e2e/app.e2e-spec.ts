@@ -7,8 +7,15 @@ describe('kimchistan-front-end App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  xit('should display welcome message', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
+
+  // it('should find dropdown for Bibimbap', () => {
+  //   page.navigateTo();
+  //   element(by.model())
+  // });
 });
+
+

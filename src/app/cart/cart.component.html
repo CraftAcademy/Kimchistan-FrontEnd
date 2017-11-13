@@ -1,0 +1,20 @@
+<div class="row align-center">
+  <h2>Shopping Cart</h2>
+</div>
+
+<div *ngFor="let singleItem of myCart">
+  <div class="row align-bottom cart">
+    <div class="medium-6 columns">{{singleItem.name}}</div>
+    <div class="medium-3 columns">{{singleItem.price}}</div>
+    <div class="medium-3 columns">
+      <button type="button" class="button btn-danger btn-sm cart-button" (click)="removeCart(singleItem.id)">
+        Remove Item
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row align-bottom space">
+  <div class="medium-1 medium-offset-6 columns cart">Total</div>
+  <div class="medium-5 cart">{{cartTotal | currency: 'SEK':true}}</div>
+</div>
