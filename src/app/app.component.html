@@ -7,7 +7,7 @@
 <nav class="fixed-header">
   <div class="container-fluid">
     <div class="header-text">
-      <div *ngFor="let item of basket">
+      <div *ngFor="let item of cart">
         {{item.product_name}} with {{item.ingredient_name}} ({{item.amount}})
          Total price: {{item.price}} kr
         <!--<div *ngIf="item == ''">-->
