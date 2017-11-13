@@ -2,8 +2,9 @@
   <nav class="fixed-header">
     <div class="container-fluid">
       <div class="header-text">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
+        <i class="fa fa-shopping-basket fa-2x" aria-hidden="true"> {{cart.length}} in cart ({{total_price}} kr)</i></a>
         <div>
-          Total price: {{total_price}} kr, {{cart.length}} items
         </div>
         <br>
         <div class="panel-group" id="accordion">
