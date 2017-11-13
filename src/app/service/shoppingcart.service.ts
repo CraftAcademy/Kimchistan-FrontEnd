@@ -18,14 +18,15 @@ export class ShoppingCartService {
   }
 
   showAll() {
-    return this.cart
+    return this.cart;
   }
 
   showTotal() {
     let total_price = 0;
     this.cart.forEach(function(obj){
-      this.total_price += obj.price;
-    }
+      total_price += obj.price;
+    };
+    console.log(total_price);
     return total_price;
-  }
+  };
 }

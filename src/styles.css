@@ -48,23 +48,9 @@ a:link {
   color: red;
 }
 
-a:link:hover {
+a:link:hover, a:visited, a:active, a:focus {
   color: darkred;
   text-decoration: none;
-}
-
-a:visited {
-  color: darkred;
-  text-decoration: none;
-}
-
-a:active {
-  color: darkred;
-  text-decoration: none;
-}
-
-a:focus{
-  color:darkred;
 }
 
 i {

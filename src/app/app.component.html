@@ -3,25 +3,26 @@
     <div class="container-fluid">
       <div class="header-text">
         <div>
-          Total price: {{total_price}} kr
+          Total price: {{total_price}} kr, {{cart.length}} items
         </div>
+        <br>
         <div class="panel-group" id="accordion">
           <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
-                  Show order</a>
-              </div>
-            </div>
-            <div id="collapse" class="panel-collapse collapse">
+            <div id="collapse" class="panel-collapse collapse show">
               <div class="panel-body">
                 <div *ngFor="let item of cart">
-                  {{item.product_name}} with {{item.ingredient_name}} ({{item.price}})
-                  <!--<div *ngIf="item == ''">-->
-                  <!--</div>-->
+                  <div *ngIf="item.ingredient_name">
+                    {{item.product_name}} with {{item.ingredient_name}} ({{item.price}})
+                  </div>
+                  <div *ngIf="item.ingredient_name == undefined">
+                    {{item.product_name}} ({{item.price}})
+                  </div>
+                  <!--show how many dishes-->
                 </div>
               </div>
             </div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
+              Show/hide order</a>
           </div>
         </div>
       </div>
