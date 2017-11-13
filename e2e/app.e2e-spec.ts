@@ -27,7 +27,7 @@ describe('kimchistan-front-end App', () => {
   });
 
   it('should show order info when when item is added and hides when clicked', () => {
-    let accordion = element(by.id('showing_cart'));
+    let accordion = element(by.id('cart_showing'));
     expect(accordion.isPresent()).toBeFalsy();
 
     element(by.id('dropdown_Bibimbap')).click();
@@ -38,7 +38,8 @@ describe('kimchistan-front-end App', () => {
 
     expect(element(by.linkText('Show/hide order')).getTagName()).toBe('a');
     element(by.linkText('Show/hide order')).click();
-    // expect(accordion.isPresent()).toBeFalsy(); // this should verify that accordion is hidden but fails
+    let order_showing = element(by.id('show_hide'));
+    expect(order_showing.isPresent()).toBeFalsy();
   });
 });
 
