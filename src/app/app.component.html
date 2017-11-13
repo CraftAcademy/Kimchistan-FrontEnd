@@ -1,20 +1,33 @@
-<nav class="fixed-header">
-  <div class="container-fluid">
-    <div class="header-text">
-      <a href="#demo" data-toggle="collapse">Collapsible</a>
-
-      <div id="demo" class="collapse">
-        Lorem ipsum dolor text....
+<div *ngIf="cart.length != 0">
+  <nav class="fixed-header">
+    <div class="container-fluid">
+      <div class="header-text">
+        <div>
+          Total price: {{total_price}} kr
+        </div>
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
+                  Show order</a>
+              </div>
+            </div>
+            <div id="collapse" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div *ngFor="let item of cart">
+                  {{item.product_name}} with {{item.ingredient_name}} ({{item.price}})
+                  <!--<div *ngIf="item == ''">-->
+                  <!--</div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div *ngFor="let item of cart">
-        {{item.product_name}} with {{item.ingredient_name}} ({{item.price}})  (amount:)
-        <!--<div *ngIf="item == ''">-->
-        <!--</div>-->
-      </div>
-      Total price: {{total_price}} kr
     </div>
-  </div>
-</nav>
+  </nav>
+</div>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
