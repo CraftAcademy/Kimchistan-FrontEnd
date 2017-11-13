@@ -14,13 +14,13 @@ export class Product extends JsonApiModel {
   price: number;
 
   @Attribute()
-  image: string
+  image: string;
 
   @Attribute()
   type: string;
 
   @Attribute()
-  status: boolean;
+  available: true;
 
   @Attribute()
   ingredients: string;

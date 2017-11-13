@@ -37,7 +37,7 @@ describe('MockBackend: ProductService', () => {
         "price": 10,
         "description": "refreshing",
         "image": "image",
-        "status": true,
+        "available": true,
         "type": "drink"
       }
     }];
