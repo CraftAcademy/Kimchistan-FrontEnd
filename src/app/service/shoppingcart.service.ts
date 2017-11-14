@@ -77,11 +77,11 @@ export class ShoppingCartService {
     if (!itemFound) {
       this.cart.pop({
         'product_id': p_id,
-        'product_name': p_name,
-        'price': Number(price),
-        'ingredient_id': i_id,
-        'ingredient_name': i_name,
-        'item_quantity': 1
+        // 'product_name': p_name,
+        // 'price': Number(price),
+        'ingredient_id': i_id
+        // 'ingredient_name': i_name,
+        // 'item_quantity': 1
       });
       this.saveCart();
       console.log(this.cart);
