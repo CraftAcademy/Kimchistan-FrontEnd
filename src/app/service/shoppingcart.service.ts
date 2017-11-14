@@ -66,6 +66,7 @@ export class ShoppingCartService {
         if (p_id === obj.product_id && i_id === obj.ingredient_id && obj.item_quantity > 1) {
           obj.item_quantity -= 1;
           itemFound = true;
+          console.log('hi')
         }
       } else {
         if (p_id === obj.product_id && obj.item_quantity > 1) {

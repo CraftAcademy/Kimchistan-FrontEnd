@@ -40,6 +40,18 @@ img.sidedish_image {
   margin-bottom: 10px;
 }
 
+button.btn-remove {
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  align: center;
+  height: 6px;
+  margin-left: 10px;
+  border: none;
+  outline:none;
+}
+
 .btn.btn-primary:hover {
   color: white;
   background-color: black;

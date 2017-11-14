@@ -11,13 +11,13 @@
               <div *ngFor="let item of cart">
                 <div *ngIf="item.ingredient_name">
                   {{item.product_name}} med {{item.ingredient_name}} ({{item.price}} kr) x{{item.item_quantity}}
-                  <button type="button" class="btn btn-clear" (click)="removeProduct(item.product_id, item.ingredient_id, item.item_quantity)">
+                  <button class="btn-remove" (click)="removeProduct(item.product_id, item.product_name, item.price, item.ingredient_id, item.name)">
                     Ta bort
                   </button>
                 </div>
                 <div *ngIf="item.ingredient_name == undefined">
                   {{item.product_name}} ({{item.price}} kr) x{{item.item_quantity}}
-                  <button type="button" class="btn btn-clear" (click)="removeProduct(item.product_id, item.item_quantity)">
+                  <button class="btn-remove" (click)="removeProduct(item.product_id, item.product_name, item.price, item.ingredient_id, item.name)">
                     Ta bort
                   </button>
                 </div>
