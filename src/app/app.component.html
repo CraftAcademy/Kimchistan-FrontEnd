@@ -1,31 +1,28 @@
 <div *ngIf="cart.length != 0">
   <nav class="fixed-header">
-      <div class="header-text">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse" id="cart_showing">
+    <div class="header-text">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse" id="cart_showing">
         <i class="fa fa-shopping-basket fa-2x" aria-hidden="true"> {{cart.length}} in cart ({{total_price}} kr)</i></a>
-        <div>
-        </div>
-        <br>
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div id="collapse" class="panel-collapse collapse show">
-              <div class="panel-body">
-                <div *ngFor="let item of cart">
-                  <div *ngIf="item.ingredient_name">
-                    {{item.product_name}} with {{item.ingredient_name}} ({{item.price}})
-                  </div>
-                  <div *ngIf="item.ingredient_name == undefined">
-                    {{item.product_name}} ({{item.price}})
-                  </div>
-                  <!--show how many dishes-->
+      <br>
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div id="collapse" class="panel-collapse collapse show">
+            <div class="panel-body">
+              <div *ngFor="let item of cart">
+                <div *ngIf="item.ingredient_name">
+                  {{item.product_name}} with {{item.ingredient_name}} ({{item.price}} kr) x{{item.item_quantity}}
+                </div>
+                <div *ngIf="item.ingredient_name == undefined">
+                  {{item.product_name}} ({{item.price}} kr) x{{item.item_quantity}}
                 </div>
               </div>
             </div>
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse" id="showing_hide" >
-              Show/hide order</a>
           </div>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse" id="showing_hide" >
+            Show/hide order</a>
         </div>
       </div>
+    </div>
   </nav>
 </div>
 <nav class="navbar navbar-default">
