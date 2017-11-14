@@ -50,4 +50,9 @@ export class AppComponent {
       this.showProducts();
     }
   }
+
+  clearCart() {
+    this.cartSVC.clearCart();
+    this.showProducts();
+  }
 }

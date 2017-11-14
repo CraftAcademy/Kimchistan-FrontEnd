@@ -53,4 +53,10 @@ export class ShoppingCartService {
   loadCart() {
     this.cart = JSON.parse(localStorage.getItem('cart'));
   }
+
+  clearCart() {
+    this.cart = [];
+    this.saveCart();
+    console.log('service' + this.cart);
+  }
 }
