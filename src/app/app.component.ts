@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {Product} from './models/product';
-import {ProductService} from './service/product.service';
-import {ShoppingCartService} from './service/shoppingcart.service';
+import { Component } from '@angular/core';
+import { Product } from './models/product';
+import { ProductService } from './service/product.service';
+import { ShoppingCartService } from './service/shoppingcart.service';
 
 @Component({
   selector: 'app-root',
@@ -48,6 +48,6 @@ export class AppComponent {
     if (localStorage.length > 0) {
       this.cartSVC.loadCart();
       this.showProducts();
-    };
+    }
   }
 }
