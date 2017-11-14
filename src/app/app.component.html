@@ -11,11 +11,20 @@
               <div *ngFor="let item of cart">
                 <div *ngIf="item.ingredient_name">
                   {{item.product_name}} med {{item.ingredient_name}} ({{item.price}} kr) x{{item.item_quantity}}
+                  <button type="button" class="btn btn-clear" (click)="removeProduct(item.product_id, item.ingredient_id, item.item_quantity)">
+                    Ta bort
+                  </button>
                 </div>
                 <div *ngIf="item.ingredient_name == undefined">
                   {{item.product_name}} ({{item.price}} kr) x{{item.item_quantity}}
+                  <button type="button" class="btn btn-clear" (click)="removeProduct(item.product_id, item.item_quantity)">
+                    Ta bort
+                  </button>
                 </div>
               </div>
+              <button type="button" class="btn btn-clear" (click)="clearCart()">
+                Töm korgen
+              </button>
             </div>
           </div>
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse" id="showing_hide" >
