@@ -1,6 +1,5 @@
 <div *ngIf="cart.length != 0">
   <nav class="fixed-header">
-    <div class="container-fluid">
       <div class="header-text">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse" id="cart_showing">
         <i class="fa fa-shopping-basket fa-2x" aria-hidden="true"> {{cart.length}} in cart ({{total_price}} kr)</i></a>
@@ -27,7 +26,6 @@
           </div>
         </div>
       </div>
-    </div>
   </nav>
 </div>
 <nav class="navbar navbar-default">
