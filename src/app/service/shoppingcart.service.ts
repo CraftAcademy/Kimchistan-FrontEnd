@@ -29,7 +29,6 @@ export class ShoppingCartService {
         'ingredient_name': i_name,
         'item_quantity': 1
       });
-      let x = {'product_id': p_id, 'product_name': p_name, 'price': Number(price), 'ingredient_id': i_id, 'ingredient_name': i_name};
       this.saveCart();
       console.log(this.cart);
     }

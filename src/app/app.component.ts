@@ -18,7 +18,7 @@ export class AppComponent {
   constructor(private productService: ProductService,
               private cartSVC: ShoppingCartService) {
     this.getProducts();
-    // this.reAddProducts();
+    this.reAddProducts();
   }
 
   getProducts(): void {
