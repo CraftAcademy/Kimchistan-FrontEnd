@@ -29,6 +29,8 @@ export class ShoppingCartService {
         'ingredient_name': i_name,
         'item_quantity': 1
       });
+      let x = {'product_id': p_id, 'product_name': p_name, 'price': Number(price), 'ingredient_id': i_id, 'ingredient_name': i_name};
+      this.saveCart();
       console.log(this.cart);
     }
   }
@@ -43,5 +45,13 @@ export class ShoppingCartService {
       total_price += obj.price;
     });
     return total_price;
+  }
+
+  saveCart() {
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  loadCart() {
+    this.cart = JSON.parse(localStorage.getItem('cart'));
   }
 }

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { Product } from './models/product';
-import { ProductService } from './service/product.service';
-import { ShoppingCartService } from './service/shoppingcart.service';
+import {Component} from '@angular/core';
+import {Product} from './models/product';
+import {ProductService} from './service/product.service';
+import {ShoppingCartService} from './service/shoppingcart.service';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +14,11 @@ export class AppComponent {
   lng: number = 18.063829;
   cart: any = [];
   total_price: number;
+
   constructor(private productService: ProductService,
               private cartSVC: ShoppingCartService) {
     this.getProducts();
+    // this.reAddProducts();
   }
 
   getProducts(): void {
@@ -38,7 +40,12 @@ export class AppComponent {
   }
 
   showProducts() {
-        this.cart = this.cartSVC.showAll();
-        this.total_price = this.cartSVC.showTotal();
+    this.cart = this.cartSVC.showAll();
+    this.total_price = this.cartSVC.showTotal();
   }
+
+  reAddProducts() {
+    this.cartSVC.loadCart();
+    this.showProducts();
+  };
 }
