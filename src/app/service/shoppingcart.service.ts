@@ -8,9 +8,16 @@ export class ShoppingCartService {
   addToCart(p_id: string, p_name: string, price: number, i_id: string, i_name: string) {
     let itemFound = false;
     this.cart.forEach(function (obj) {
-      if (p_id === obj.product_id) {
-        obj.item_quantity += 1;
-        itemFound = true;
+      if (i_id) {
+        if (p_id === obj.product_id && i_id === obj.ingredient_id) {
+          obj.item_quantity += 1;
+          itemFound = true;
+        }
+      } else {
+        if (p_id === obj.product_id) {
+          obj.item_quantity += 1;
+          itemFound = true;
+        }
       }
     });
     if (!itemFound) {
