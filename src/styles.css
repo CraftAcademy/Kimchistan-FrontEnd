@@ -48,7 +48,17 @@ a:link {
   color: red;
 }
 
+a {
+  color: red;
+}
+
 a:link:hover, a:link:visited, a:link:active, a:link:focus {
+  color: darkred;
+  text-decoration: none;
+  border: none;
+}
+
+a#showing_hide:hover, a#showing_hide:visited, a#showing_hide:active, a#showing_hide:focus {
   color: darkred;
   text-decoration: none;
   border: none;
