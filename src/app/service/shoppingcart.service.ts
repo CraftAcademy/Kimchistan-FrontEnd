@@ -59,7 +59,7 @@ export class ShoppingCartService {
     this.saveCart();
   }
 
-  removeProduct(p_id: string, p_name: string, price: number, i_id: string, i_name: string) {
+  removeProduct(p_id: string, i_id: string) {
     let itemFound = false;
     this.cart.forEach(function (obj) {
       if (i_id) {
