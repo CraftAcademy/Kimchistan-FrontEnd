@@ -56,14 +56,14 @@ export class AppComponent {
     this.showProducts();
   }
 
-  removeProduct(p_id: string, p_name: string, p_price: number, i_id: string, i_name: string, i_price: number) {
-    let price: number;
-    if (i_price) {
-      price = p_price + i_price;
-    } else {
-      price = p_price;
-    }
-    this.cartSVC.removeProduct(p_id, p_name, price, i_id, i_name);
+  removeProduct(p_id: string, i_id: string) {
+    // let price: number;
+    // if (i_price) {
+    //   price = p_price + i_price;
+    // } else {
+    //   price = p_price;
+    // }
+    this.cartSVC.removeProduct(p_id, i_id);
     this.showProducts();
     this.cartSVC.showTotal();
   }
