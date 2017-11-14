@@ -45,7 +45,9 @@ export class AppComponent {
   }
 
   reAddProducts() {
-    this.cartSVC.loadCart();
-    this.showProducts();
-  };
+    if (localStorage.length > 0) {
+      this.cartSVC.loadCart();
+      this.showProducts();
+    };
+  }
 }
