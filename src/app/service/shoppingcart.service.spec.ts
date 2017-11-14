@@ -18,13 +18,13 @@ describe('ShoppingCartService', () => {
     service.addToCart(10, 'Bibimbap', 112, 30, 'Chicken');
 
     expect(service.cart.length).toEqual(1);
-    expect(service.cart[0]).toEqual({product_id: 10, product_name: 'Bibimbap', price: 112, ingredient_id: 30, ingredient_name: 'Chicken'});
+    expect(service.cart[0]).toEqual({product_id: 10, product_name: 'Bibimbap', price: 112, ingredient_id: 30, ingredient_name: 'Chicken', item_quantity: 1});
   });
 
   it('showAll: returns all items in cart', () => {
     service.addToCart(10, 'Bibimbap', 112, 30, 'Chicken');
     let cart = service.showAll();
-    expect(cart[0]).toEqual({product_id: 10, product_name: 'Bibimbap', price: 112, ingredient_id: 30, ingredient_name: 'Chicken'});
+    expect(cart[0]).toEqual({product_id: 10, product_name: 'Bibimbap', price: 112, ingredient_id: 30, ingredient_name: 'Chicken', item_quantity: 1});
   });
 
   it('showTotal: returns total price', () => {
