@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
+import {PaymentService} from "./service/payment.service";
 
 
 @NgModule({
@@ -18,7 +19,6 @@ import { AgmCoreModule } from '@agm/core';
   ],
   imports: [
     BrowserModule,
-    JsonApiModule,
     NgbModule.forRoot(), // for root module
     // NgbModule // for child module
     JsonApiModule,
@@ -29,7 +29,8 @@ import { AgmCoreModule } from '@agm/core';
   providers: [
     ProductService,
     DatastoreService,
-    ShoppingCartService
+    ShoppingCartService,
+    PaymentService
   ],
 
   bootstrap: [AppComponent]

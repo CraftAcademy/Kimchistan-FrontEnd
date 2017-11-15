@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Product } from './models/product';
+import { Payment} from "./models/payment";
 import { ProductService } from './service/product.service';
+import { PaymentService} from "./service/payment.service";
 import { ShoppingCartService } from './service/shoppingcart.service';
 
 @Component({
@@ -10,16 +12,20 @@ import { ShoppingCartService } from './service/shoppingcart.service';
 })
 export class AppComponent {
   products: Product[];
+  payments: Payment[];
   lat: number = 59.334248;
   lng: number = 18.063829;
   cart: any = [];
   total_price: number;
 
   constructor(private productService: ProductService,
-              private cartSVC: ShoppingCartService) {
+              private cartSVC: ShoppingCartService,
+              private paymentService: PaymentService) {
     this.getProducts();
     this.reAddProducts();
   }
+
+
 
   getProducts(): void {
     this.productService.getAll()
@@ -27,6 +33,26 @@ export class AppComponent {
         this.products = products;
       });
   }
+
+
+  openCheckout() {
+    let amount = this.total_price * 100;
+    const handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_tzGL0gkTTfi6MspvJQhEo6Hq',
+      locale: 'Sv',
+      name: 'Kimchistan',
+      currency: 'sek',
+      amount: amount,
+      token: (token: any) => {
+        this.paymentService.create(token, amount );
+      }
+    });
+
+    handler.open({
+      name: 'Kimchistan',
+      amount: amount
+    });
+  };
 
   addProduct(p_id: string, p_name: string, p_price: number, i_id: string, i_name: string, i_price: number) {
     let price: number;
