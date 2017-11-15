@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 
@@ -7,17 +7,11 @@ export class ShoppingCartService {
 
   addToCart(p_id: string, p_name: string, price: number, i_id: string, i_name: string) {
     let itemFound = false;
+    let self = this;
     this.cart.forEach(function (obj) {
-      if (i_id) {
-        if (p_id === obj.product_id && i_id === obj.ingredient_id) {
-          obj.item_quantity += 1;
-          itemFound = true;
-        }
-      } else {
-        if (p_id === obj.product_id) {
-          obj.item_quantity += 1;
-          itemFound = true;
-        }
+      if (self.isSameProduct(p_id, i_id, obj)) {
+        obj.item_quantity += 1;
+        itemFound = true;
       }
     });
     if (!itemFound) {
@@ -30,7 +24,6 @@ export class ShoppingCartService {
         'item_quantity': 1
       });
       this.saveCart();
-      console.log(this.cart);
     }
   }
 
@@ -45,7 +38,7 @@ export class ShoppingCartService {
     });
     return total_price;
   }
-
+le
   saveCart() {
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
@@ -61,13 +54,9 @@ export class ShoppingCartService {
 
   removeProduct(p_id: string, p_name: string, price: number, i_id: string, i_name: string) {
     let itemFound = false;
+    let self = this;
     this.cart.forEach(function (obj) {
-      if (i_id) {
-        if (p_id === obj.product_id && i_id === obj.ingredient_id && obj.item_quantity > 1) {
-          obj.item_quantity -= 1;
-          itemFound = true;
-        }
-      } else if (p_id === obj.product_id && obj.item_quantity > 1) {
+      if (self.isSameProduct(p_id, i_id, obj)) {
         obj.item_quantity -= 1;
         itemFound = true;
       }
@@ -76,7 +65,6 @@ export class ShoppingCartService {
       this.cart = this.cart.filter(item => !this.isSameProduct(p_id, i_id, item));
 
       this.saveCart();
-      console.log(this.cart);
     }
   }
 

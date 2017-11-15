@@ -62,11 +62,16 @@ describe('ShoppingCartService', () => {
 
   it('removeProduct: removes item from cart', () => {
     service.addToCart(10, 'Bibimbap', 112, 30, 'Chicken');
+    service.addToCart(10, 'Bibimbap', 112, 30, 'Chicken');
     service.addToCart(11, 'Funchöza', 115, 31, 'Chicken');
-    expect(service.cart.length).toEqual(2);
+    service.addToCart(16, 'Coca-Cola', 24);
+    service.addToCart(16, 'Coca-Cola', 24);
+    expect(service.cart.length).toEqual(3);
     service.removeProduct(10, 'Bibimbap', 112, 30, 'Chicken');
+    service.removeProduct(11, 'Funchöza', 115, 31, 'Chicken');
+    service.removeProduct(16, 'Coca-Cola', 24);
 
-    expect(service.cart.length).toEqual(1);
+    expect(service.cart.length).toEqual(2);
   });
 
   it('clearCart: empties cart', () => {
@@ -82,7 +87,5 @@ describe('ShoppingCartService', () => {
     service.saveCart();
     location.reload();
     console.log(service.cart);
-    // expect(service.cart.length).toEqual(0);
-
   });
 });
