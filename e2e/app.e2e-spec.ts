@@ -41,6 +41,7 @@ describe('kimchistan-front-end App', () => {
     let order_showing = element(by.id('show_hide'));
     expect(order_showing.isPresent()).toBeFalsy();
   });
+  it('should verify that item shows in cart when added');
 });
 
 

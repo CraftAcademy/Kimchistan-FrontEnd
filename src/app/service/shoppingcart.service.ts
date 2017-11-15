@@ -56,7 +56,7 @@ le
     let itemFound = false;
     let self = this;
     this.cart.forEach(function (obj) {
-      if (self.isSameProduct(p_id, i_id, obj)) {
+      if (self.isSameProduct(p_id, i_id, obj) && obj.item_quantity > 1) {
         obj.item_quantity -= 1;
         itemFound = true;
       }
