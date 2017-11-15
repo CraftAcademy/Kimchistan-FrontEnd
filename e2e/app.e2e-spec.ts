@@ -14,7 +14,7 @@ describe('kimchistan-front-end App', () => {
     browser.wait(function () {
       return element(by.id('dropdown_Bibimbap')).isPresent();
     }, 5000);
-    element(by.id('dropdown_Bibimbap')).click();
+    element(by.id(`dropdown_Bibimbap`)).click();
     element(by.id('dropdown_salad')).click();
     element(by.id('dropdown_drinks')).click();
   });
@@ -27,6 +27,8 @@ describe('kimchistan-front-end App', () => {
   });
 
   it('should verify that items in cart can be removed', () => {
+    element(by.id('remove_all')).click();
+
     let accordion = element(by.id('cart_showing'));
 
     element(by.id('dropdown_Bibimbap')).click();
@@ -34,7 +36,7 @@ describe('kimchistan-front-end App', () => {
 
     expect(accordion.isPresent()).toBeTruthy();
     accordion.getText().then(function (text) {
-      expect(text).toContain('1 i korgen (116 kr)');
+      expect(text).toContain('1 i korgen (121 kr)');
     });
 
     element(by.id('remove_Bibimbap-Tofu')).click();
@@ -52,7 +54,7 @@ describe('kimchistan-front-end App', () => {
 
     expect(accordion.isPresent()).toBeTruthy();
     accordion.getText().then(function (text) {
-      expect(text).toContain('2 i korgen (232 kr)');
+      expect(text).toContain('2 i korgen (242 kr)');
     });
 
     element(by.id('remove_all')).click();
@@ -68,7 +70,7 @@ describe('kimchistan-front-end App', () => {
     element(by.id('Bibimbap_Tofu')).click();
 
     expect(accordion.isPresent()).toBeTruthy();
-    accordion.getText().then(function(text){expect(text).toContain('1 i korgen (116 kr)')});
+    accordion.getText().then(function(text){expect(text).toContain('1 i korgen (121 kr)')});
 
     expect(element(by.linkText('Visa/göm beställningsdetaljer')).getTagName()).toBe('a');
     element(by.linkText('Visa/göm beställningsdetaljer')).click();

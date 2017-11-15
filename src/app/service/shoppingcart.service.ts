@@ -38,7 +38,7 @@ export class ShoppingCartService {
     });
     return total_price;
   }
-le
+
   saveCart() {
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
