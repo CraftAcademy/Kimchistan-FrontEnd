@@ -5,7 +5,7 @@ import { Product } from '../models/product';
 import { Payment} from "../models/payment";
 
 const config: DatastoreConfig = {
-  baseUrl: 'http://localhost:3000/api',
+  baseUrl: 'https://kimchistan-api.herokuapp.com/api',
   apiVersion: 'v1',
   models: {
     products: Product,
