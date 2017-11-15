@@ -26,6 +26,40 @@ describe('kimchistan-front-end App', () => {
     element(by.id('Bibimbap_Chicken')).click();
   });
 
+  it('should verify that items in cart can be removed', () => {
+    let accordion = element(by.id('cart_showing'));
+
+    element(by.id('dropdown_Bibimbap')).click();
+    element(by.id('Bibimbap_Tofu')).click();
+
+    expect(accordion.isPresent()).toBeTruthy();
+    accordion.getText().then(function (text) {
+      expect(text).toContain('1 i korgen (116 kr)');
+    });
+
+    element(by.id('remove_Bibimbap-Tofu')).click();
+    let order_showing = element(by.id('show_hide'));
+    expect(order_showing.isPresent()).toBeFalsy();
+  });
+
+  it('should verify that cart can be cleared', () => {
+    let accordion = element(by.id('cart_showing'));
+
+    element(by.id('dropdown_Bibimbap')).click();
+    element(by.id('Bibimbap_Tofu')).click();
+    element(by.id('dropdown_Hoe-deopbap')).click();
+    element(by.id('Hoe-deopbap_Tofu')).click();
+
+    expect(accordion.isPresent()).toBeTruthy();
+    accordion.getText().then(function (text) {
+      expect(text).toContain('2 i korgen (232 kr)');
+    });
+
+    element(by.id('remove_all')).click();
+    let order_showing = element(by.id('show_hide'));
+    expect(order_showing.isPresent()).toBeFalsy();
+  });
+
   it('should show order info when when item is added and hides when clicked', () => {
     let accordion = element(by.id('cart_showing'));
     expect(accordion.isPresent()).toBeFalsy();
@@ -41,40 +75,5 @@ describe('kimchistan-front-end App', () => {
     let order_showing = element(by.id('show_hide'));
     expect(order_showing.isPresent()).toBeFalsy();
   });
-
-  it('should verify that items in cart can be removed', () => {
-    let accordion = element(by.id('cart_showing'));
-
-    element(by.id('dropdown_Bibimbap')).click();
-    element(by.id('Bibimbap_Tofu')).click();
-
-    expect(accordion.isPresent()).toBeTruthy();
-    accordion.getText().then(function (text) {
-      expect(text).toContain('1 i korgen (116 kr)')
-    });
-
-    element(by.id('remove_Bibimbap_Tofu')).click();
-    let order_showing = element(by.id('show_hide'));
-    expect(order_showing.isPresent()).toBeFalsy();
-  });
-
-  it('should verify that items in cart can be removed', () => {
-    let accordion = element(by.id('cart_showing'));
-
-    element(by.id('dropdown_Bibimbap')).click();
-    element(by.id('Bibimbap_Tofu')).click();
-    element(by.id('dropdown_Hoe-deopbap')).click();
-    element(by.id('Hoe-deopbap_Tofu')).click();
-
-    expect(accordion.isPresent()).toBeTruthy();
-    accordion.getText().then(function (text) {
-      expect(text).toContain('2 i korgen (232 kr)')
-    });
-
-    element(by.id('remove_all')).click();
-    let order_showing = element(by.id('show_hide'));
-    expect(order_showing.isPresent()).toBeFalsy();
-  });
-
 });
 
