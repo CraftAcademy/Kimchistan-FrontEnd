@@ -41,7 +41,20 @@ describe('kimchistan-front-end App', () => {
     let order_showing = element(by.id('show_hide'));
     expect(order_showing.isPresent()).toBeFalsy();
   });
-  it('should verify that item shows in cart when added');
-});
+  
+  it('should verify that items in cart can be removed', () => {
+    let accordion = element(by.id('cart_showing'));
 
+    element(by.id('dropdown_Bibimbap')).click();
+    element(by.id('Bibimbap_Tofu')).click();
+
+    expect(accordion.isPresent()).toBeTruthy();
+    accordion.getText().then(function (text) {
+      expect(text).toContain('1 i korgen (116 kr)')
+    });
+
+    expect(element(by.linkText('Ta bort')).getTagName()).toBe('button');
+    element(by.id('remove_Bibimbap_Tofu')).click();
+  });
+});
 
