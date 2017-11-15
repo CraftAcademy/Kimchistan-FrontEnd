@@ -66,26 +66,21 @@ export class ShoppingCartService {
         if (p_id === obj.product_id && i_id === obj.ingredient_id && obj.item_quantity > 1) {
           obj.item_quantity -= 1;
           itemFound = true;
-          console.log('hi');
         }
-      } else {
-        if (p_id === obj.product_id && obj.item_quantity > 1) {
-          obj.item_quantity -= 1;
-          itemFound = true;
-        }
+      } else if (p_id === obj.product_id && obj.item_quantity > 1) {
+        obj.item_quantity -= 1;
+        itemFound = true;
       }
     });
     if (!itemFound) {
-      this.cart.pop({
-        'product_id': p_id,
-        'product_name': p_name,
-        'price': Number(price),
-        'ingredient_id': i_id,
-        'ingredient_name': i_name,
-        'item_quantity': 1
-      });
+      this.cart = this.cart.filter(item => !this.isSameProduct(p_id, i_id, item));
+
       this.saveCart();
       console.log(this.cart);
     }
+  }
+
+  isSameProduct(p_id, i_id, item) {
+    return item.product_id === p_id && (item.ingredient_id === null || i_id === item.ingredient_id);
   }
 }
