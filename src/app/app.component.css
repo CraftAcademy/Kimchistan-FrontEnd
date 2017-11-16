@@ -52,6 +52,18 @@ button.btn-remove {
   outline:none;
 }
 
+.btn.btn-pay {
+  margin-top: 10px;
+  color: white;
+  background-color: #008cdd;
+  border: none;
+  cursor: pointer;
+  align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-width: 117px;
+}
+
 .btn.btn-primary:hover {
   color: white;
   background-color: black;

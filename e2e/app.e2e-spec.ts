@@ -14,7 +14,7 @@ describe('kimchistan-front-end App', () => {
     browser.wait(function () {
       return element(by.id('dropdown_Bibimbap')).isPresent();
     }, 5000);
-    element(by.id(`dropdown_Bibimbap`)).click();
+    element(by.id('dropdown_Bibimbap')).click();
     element(by.id('dropdown_salad')).click();
     element(by.id('dropdown_drinks')).click();
   });
