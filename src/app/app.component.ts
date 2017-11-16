@@ -54,14 +54,14 @@ export class AppComponent {
     });
   };
 
-  addProduct(p_id: string, p_name: string, p_price: number, i_id: string, i_name: string, i_price: number) {
+  addProduct(product_id: string, product_name: string, product_price: number, ingredient_id: string, ingredient_name: string, ingredient_price: number) {
     let price: number;
-    if (i_price) {
-      price = p_price + i_price;
+    if (ingredient_price) {
+      price = product_price + ingredient_price;
     } else {
-      price = p_price;
+      price = product_price;
     }
-    this.cartSVC.addToCart(p_id, p_name, price, i_id, i_name);
+    this.cartSVC.addToCart(product_id, product_name, price, ingredient_id, ingredient_name);
     this.showProducts();
   }
 
@@ -82,8 +82,8 @@ export class AppComponent {
     this.showProducts();
   }
 
-  removeProduct(p_id: string, p_name: string, p_price: number, i_id: string, i_name: string) {
-    this.cartSVC.removeProduct(p_id, p_name, p_price, i_id, i_name);
+  removeProduct(product_id: string, product_name: string, product_price: number, ingredient_id: string, ingredient_name: string) {
+    this.cartSVC.removeProduct(product_id, product_name, product_price, ingredient_id, ingredient_name);
     this.showProducts();
     this.cartSVC.showTotal();
   }
