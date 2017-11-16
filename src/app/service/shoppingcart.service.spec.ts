@@ -57,7 +57,7 @@ describe('ShoppingCartService', () => {
   it('showTotal: returns total price', () => {
     service.addToCart(10, 'Bibimbap', 112, 30, 'Chicken');
     let total = service.showTotal();
-    expect(total).toEqual(112);
+    expect(total).toEqual(124);
   });
 
   it('removeProduct: removes item from cart', () => {
