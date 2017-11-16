@@ -29,6 +29,41 @@ img.sidedish_image {
   align: center;
 }
 
+.btn.btn-clear {
+  margin-top: 10px;
+  color: white;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+button.btn-remove {
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  align: center;
+  height: 6px;
+  margin-left: 10px;
+  border: none;
+  outline:none;
+}
+
+.btn.btn-pay {
+  margin-top: 10px;
+  color: white;
+  background-color: #008cdd;
+  border: none;
+  cursor: pointer;
+  align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-width: 117px;
+}
+
 .btn.btn-primary:hover {
   color: white;
   background-color: black;

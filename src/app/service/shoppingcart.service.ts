@@ -5,32 +5,25 @@ import { Injectable } from '@angular/core';
 export class ShoppingCartService {
   cart: any = [];
 
-  addToCart(p_id: string, p_name: string, price: number, i_id: string, i_name: string) {
+  addToCart(product_id: string, product_name: string, price: number, ingredient_id: string, ingredient_name: string) {
     let itemFound = false;
+    let self = this;
     this.cart.forEach(function (obj) {
-      if (i_id) {
-        if (p_id === obj.product_id && i_id === obj.ingredient_id) {
-          obj.item_quantity += 1;
-          itemFound = true;
-        }
-      } else {
-        if (p_id === obj.product_id) {
-          obj.item_quantity += 1;
-          itemFound = true;
-        }
+      if (self.isSameProduct(product_id, ingredient_id, obj)) {
+        obj.item_quantity += 1;
+        itemFound = true;
       }
     });
     if (!itemFound) {
       this.cart.push({
-        'product_id': p_id,
-        'product_name': p_name,
+        'product_id': product_id,
+        'product_name': product_name,
         'price': Number(price),
-        'ingredient_id': i_id,
-        'ingredient_name': i_name,
+        'ingredient_id': ingredient_id,
+        'ingredient_name': ingredient_name,
         'item_quantity': 1
       });
       this.saveCart();
-      console.log(this.cart);
     }
   }
 
@@ -41,7 +34,7 @@ export class ShoppingCartService {
   showTotal() {
     let total_price = 0;
     this.cart.forEach(function (obj) {
-      total_price += obj.price;
+      total_price += obj.price * obj.item_quantity;
     });
     return total_price;
   }
@@ -52,5 +45,30 @@ export class ShoppingCartService {
 
   loadCart() {
     this.cart = JSON.parse(localStorage.getItem('cart'));
+  }
+
+  clearCart() {
+    this.cart = [];
+    this.saveCart();
+  }
+
+  removeProduct(product_id: string, product_name: string, price: number, ingredient_id: string, ingredient_name: string) {
+    let itemFound = false;
+    let self = this;
+    this.cart.forEach(function (obj) {
+      if (self.isSameProduct(product_id, ingredient_id, obj) && obj.item_quantity > 1) {
+        obj.item_quantity -= 1;
+        itemFound = true;
+      }
+    });
+    if (!itemFound) {
+      this.cart = this.cart.filter(item => !this.isSameProduct(product_id, ingredient_id, item));
+
+      this.saveCart();
+    }
+  }
+
+  isSameProduct(product_id, ingredient_id, item) {
+    return item.product_id === product_id && (item.ingredient_id === null || ingredient_id === item.ingredient_id);
   }
 }
