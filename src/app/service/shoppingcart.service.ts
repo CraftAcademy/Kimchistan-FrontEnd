@@ -39,6 +39,14 @@ export class ShoppingCartService {
     return total_price;
   }
 
+  showQuantity() {
+    let quantity = 0;
+    this.cart.forEach(function (obj) {
+      quantity += obj.item_quantity;
+    });
+    return quantity;
+  };
+
   saveCart() {
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }

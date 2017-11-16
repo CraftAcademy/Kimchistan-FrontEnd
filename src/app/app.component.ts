@@ -17,6 +17,7 @@ export class AppComponent {
   lng: number = 18.063829;
   cart: any = [];
   total_price: number;
+  total_cart_items: number;
   today: any;
 
   constructor(private productService: ProductService,
@@ -73,6 +74,8 @@ export class AppComponent {
   showProducts() {
     this.cart = this.cartSVC.showAll();
     this.total_price = this.cartSVC.showTotal();
+    this.total_cart_items = this.cartSVC.showQuantity();
+    console.log(this.total_cart_items);
   }
 
   reAddProducts() {
