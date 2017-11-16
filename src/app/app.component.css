@@ -9,6 +9,18 @@ img.product_image {
   cursor: pointer;
 }
 
+img.product_image_unavailable {
+  opacity: 0.5;
+  width: 40%;
+  border-radius: 50%;
+  cursor: not-allowed;
+}
+
+.unavailable {
+  opacity: 0.5;
+  cursor: not-allowed!important;
+}
+
 .large_product_image {
   width: 100%;
   border-radius: 50%;

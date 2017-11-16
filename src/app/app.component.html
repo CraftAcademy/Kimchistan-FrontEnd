@@ -2,7 +2,7 @@
   <nav class="fixed-header">
     <div class="header-text">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapse" id="cart_showing">
-        <i class="fa fa-shopping-basket fa-2x" aria-hidden="true"> {{cart.length}} i korgen ({{total_price}} kr)</i></a>
+        <i class="fa fa-shopping-basket fa-2x" aria-hidden="true"> Totalt {{total_price}} kr</i></a>
       <br>
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
@@ -67,29 +67,48 @@
     <div class="col-md-4 offset-md-4 centered">
       <ng-container *ngFor="let product of products">
         <ng-container *ngIf="product.type == 'dish' && product.dailydishfor == today.getDay()">
-          <h3>Dagens rätt 89:-</h3>
-          <h3>{{product.name}}</h3>
-          <img class="product_image" data-toggle="modal" attr.data-target="#productModal{{product.id}}"
-               src={{product.image}}/>
-          <br>
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-primary" id="dropdown_{{product.name}}" ngbDropdownToggle>Välj Protein</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <ng-container *ngFor="let ingredient of product.ingredients">
-                <ng-container *ngIf="ingredient.available == true">
-                  <button class="dropdown-item" id="{{product.name}}_{{ingredient.name}}"
-                          (click)="addProduct(product.id, product.name, 89, ingredient.id, ingredient.name, 0)">
-                    {{ingredient.name}} (89 kr)
-                  </button>
+          <ng-container *ngIf="product.available == true">
+            <h3>Dagens rätt 89:-</h3>
+            <h3>{{product.name}}</h3>
+            <img class="product_image" data-toggle="modal" attr.data-target="#productModal{{product.id}}"
+                 src={{product.image}}/>
+            <br>
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-primary" id="dropdown_{{product.name}}" ngbDropdownToggle>Välj Protein</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <ng-container *ngFor="let ingredient of product.ingredients">
+                  <ng-container *ngIf="ingredient.available == true">
+                    <button class="dropdown-item" id="{{product.name}}_{{ingredient.name}}"
+                            (click)="addProduct(product.id, product.name, 89, ingredient.id, ingredient.name, 0)">
+                      {{ingredient.name}} (89 kr)
+                    </button>
+                  </ng-container>
+                  <ng-container *ngIf="ingredient.available != true">
+                    <button class="dropdown-item disabled" id="{{product.name}}_{{ingredient.name}}">
+                      {{ingredient.name}} (89 kr)
+                    </button>
+                  </ng-container>
                 </ng-container>
-                <ng-container *ngIf="ingredient.available != true">
-                  <button class="dropdown-item disabled" id="{{product.name}}_{{ingredient.name}}">
-                    {{ingredient.name}} (89 kr)
-                  </button>
-                </ng-container>
-              </ng-container>
+              </div>
             </div>
-          </div>
+          </ng-container>
+          <ng-container *ngIf="product.available != true">
+            <h3 class="unavailable">Dagens rätt 89:- (slutsåld)</h3>
+            <h3 class="unavailable">{{product.name}}</h3>
+            <img class="product_image_unavailable" data-toggle="modal" attr.data-target="#productModal{{product.id}}"
+                 src={{product.image}}/>
+            <br>
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-primary disabled unavaiable" id="dropdown_{{product.name}}" ngbDropdownToggle>Slutsåld</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <ng-container *ngFor="let ingredient of product.ingredients">
+                  <button class="dropdown-item disabled unavaiable" id="{{product.name}}_{{ingredient.name}}">
+                    {{ingredient.name}} (89 kr)
+                  </button>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
         </ng-container>
       </ng-container>
     </div>
@@ -149,43 +168,78 @@
     </div>
     <ng-container *ngFor="let product of products">
       <ng-container *ngIf="product.type == 'dish' && product.dailydishfor != today.getDay()">
-        <div class="col-md-4 centered">
-          <h3>{{product.name}}</h3>
-          <img class="product_image" data-toggle="modal" attr.data-target="#productModal{{product.id}}"
-               src={{product.image}}/>
-          <br>
-          <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-primary" id="dropdown_{{product.name}}" ngbDropdownToggle>Välj Protein</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <ng-container *ngFor="let ingredient of product.ingredients">
-                <ng-container *ngIf="ingredient.available == true">
-                  <button class="dropdown-item" id="{{product.name}}_{{ingredient.name}}"
-                          (click)="addProduct(product.id, product.name, product.price, ingredient.id, ingredient.name, ingredient.price)">
-                    {{ingredient.name}} ({{ingredient.price + product.price}} kr)
-                  </button>
+        <ng-container *ngIf="product.available == true">
+          <div class="col-md-4 centered">
+            <h3>{{product.name}}</h3>
+            <img class="product_image" data-toggle="modal" attr.data-target="#productModal{{product.id}}"
+                 src={{product.image}}/>
+            <br>
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-primary" id="dropdown_{{product.name}}" ngbDropdownToggle>Välj Protein</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <ng-container *ngFor="let ingredient of product.ingredients">
+                  <ng-container *ngIf="ingredient.available == true">
+                    <button class="dropdown-item" id="{{product.name}}_{{ingredient.name}}"
+                            (click)="addProduct(product.id, product.name, product.price, ingredient.id, ingredient.name, ingredient.price)">
+                      {{ingredient.name}} ({{ingredient.price + product.price}} kr)
+                    </button>
+                  </ng-container>
+                  <ng-container *ngIf="ingredient.available != true">
+                    <button class="dropdown-item disabled" id="{{product.name}}_{{ingredient.name}}">
+                      {{ingredient.name}} ({{ingredient.price + product.price}} kr)
+                    </button>
+                  </ng-container>
                 </ng-container>
-                <ng-container *ngIf="ingredient.available != true">
-                  <button class="dropdown-item disabled" id="{{product.name}}_{{ingredient.name}}">
-                    {{ingredient.name}} ({{ingredient.price + product.price}} kr)
-                  </button>
-                </ng-container>
-              </ng-container>
-            </div>
-          </div>
-          <div class="modal fade" id="productModal{{product.id}}" tabindex="-1" role="dialog"
-               aria-labelledby="productCloseup" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <button type="button" class="close" aria-label="Close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <img class="img-responsive large_product_image" src={{product.image}} alt="Product Image"/>
-              <div class="product-description">
-                {{product.description}}
               </div>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
+            </div>
+            <div class="modal fade" id="productModal{{product.id}}" tabindex="-1" role="dialog"
+                 aria-labelledby="productCloseup" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <img class="img-responsive large_product_image" src={{product.image}} alt="Product Image"/>
+                <div class="product-description">
+                  {{product.description}}
+                </div>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
+        <ng-container *ngIf="product.available != true">
+          <div class="col-md-4 centered">
+            <h3 class="unavailable">{{product.name}}</h3>
+            <img class="product_image_unavailable" data-toggle="modal" attr.data-target="#productModal{{product.id}}"
+                 src={{product.image}}/>
+            <br>
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-primary disabled" id="dropdown_{{product.name}}" ngbDropdownToggle>Slutsåld</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <ng-container *ngFor="let ingredient of product.ingredients">
+                  <ng-container *ngIf="ingredient.available == true">
+                    <button class="dropdown-item disabled unavaiable" id="{{product.name}}_{{ingredient.name}}">
+                      {{ingredient.name}} ({{ingredient.price + product.price}} kr)
+                    </button>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+            <div class="modal fade" id="productModal{{product.id}}" tabindex="-1" role="dialog"
+                 aria-labelledby="productCloseup" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <img class="img-responsive large_product_image" src={{product.image}} alt="Product Image"/>
+                <div class="product-description">
+                  {{product.description}}
+                </div>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
       </ng-container>
     </ng-container>
   </div>
