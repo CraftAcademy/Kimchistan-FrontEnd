@@ -97,10 +97,13 @@ describe('ShoppingCartService', () => {
     service.saveCart();
     expect(service.cart.length).toEqual(2);
     service.cart = [];
-    console.log('this is cart: ' + service.cart);
     expect(service.cart.length).toEqual(0);
     let today = new Date();
     service.loadCart(today.getDay());
     expect(service.cart.length).toEqual(2);
+    today.setDate(today.getDate() - 1);
+    service.cart = [];
+    expect(service.loadCart(today.getDay())).toEqual ;
+    expect(service.cart.length).toEqual(0);
   });
 });
