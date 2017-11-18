@@ -1,17 +1,17 @@
-# KimchistanFrontEnd
+# KimchistanFrontEnd 
+## [Visit the app Kimchistan](https://kimchistan-dev.surge.sh/)
 
 [![Coverage Status](https://coveralls.io/repos/github/CraftAcademy/Kimchistan-FrontEnd/badge.svg)](https://coveralls.io/github/CraftAcademy/Kimchistan-FrontEnd)
 
-
-Final project for the August 2017 cohort.
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
-
+This is the final project for the August 2017 cohort. 
 
 We were approched by a client who wanted a website for a restaurant, where customers can order food online and pick it up at the restaurant after 30 minutes.
 
+The project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
 ## First release
+Visit the app [Kimchistan](https://kimchistan-dev.surge.sh/).
+
 In the first release we put focus on the basic requirement for a functional website, while still aiming to fit the clients conditions regarding the styling. 
 
 A customer can visit the website and get restaurant information, choose a dish with a specific ingredient, and pay for the order. After an order is placed and paid for, the kitchen receives an email with pick up and order details. 
