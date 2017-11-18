@@ -38,4 +38,8 @@ describe('MockBackend: PaymentService', () => {
   it('should be created', inject([PaymentService], (service: PaymentService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should be created', inject([PaymentService], (service: PaymentService) => {
+    expect(service).toBeTruthy();
+  }));
 });
