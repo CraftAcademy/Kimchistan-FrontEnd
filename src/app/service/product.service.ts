@@ -11,8 +11,7 @@ export class ProductService {
   }
 
   getAll(): Observable<Product[]> {
-    return this.datastore.findAll(Product, {})
-      .map(res => res.getModels());
+    return this.datastore.findAll(Product, {}).map(res => res.getModels());
   }
 
   show(id): Observable<Product> {
