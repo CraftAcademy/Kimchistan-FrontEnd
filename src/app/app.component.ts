@@ -80,7 +80,12 @@ export class AppComponent {
     });
   }
 
-  addProduct(product_id: string, product_name: string, product_price: number, ingredient_id: string, ingredient_name: string, ingredient_price: number) {
+  addProduct(product_id: string,
+             product_name: string,
+             product_price: number,
+             ingredient_id: string,
+             ingredient_name: string,
+             ingredient_price: number) {
     let price: number;
     if (ingredient_price) {
       price = product_price + ingredient_price;

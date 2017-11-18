@@ -60,6 +60,16 @@ describe('ShoppingCartService', () => {
     expect(total).toEqual(112);
   });
 
+  it('showQuantity: shows how many items in cart', () => {
+    service.addToCart(10, 'Bibimbap', 112, 30, 'Chicken');
+    service.addToCart(10, 'Bibimbap', 112, 30, 'Chicken');
+    service.addToCart(11, 'Funchöza', 115, 31, 'Chicken');
+    service.addToCart(16, 'Coca-Cola', 24);
+    let quantity = service.showQuantity();
+
+    expect(quantity).toEqual(4);
+  });
+
   it('removeProduct: removes item from cart', () => {
     service.addToCart(10, 'Bibimbap', 112, 30, 'Chicken');
     service.addToCart(10, 'Bibimbap', 112, 30, 'Chicken');
@@ -83,8 +93,14 @@ describe('ShoppingCartService', () => {
 
   it('saveCart: saves cart, loadCart: retrieves cart', () => {
     service.addToCart(11, 'Funchöza', 115, 31, 'Chicken');
-    expect(service.cart.length).toEqual(1);
+    service.addToCart(12, 'Bibimbap', 115, 31, 'Chicken');
     service.saveCart();
-    location.reload();
+    expect(service.cart.length).toEqual(2);
+    service.cart = [];
+    console.log('this is cart: ' + service.cart);
+    expect(service.cart.length).toEqual(0);
+    let today = new Date();
+    service.loadCart(today.getDay());
+    expect(service.cart.length).toEqual(2);
   });
 });

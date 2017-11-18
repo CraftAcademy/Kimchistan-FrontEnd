@@ -56,13 +56,9 @@ export class ShoppingCartService {
 
   loadCart(today) {
     let compare_date = localStorage.getItem('date');
-    console.log('compare_date: ' + compare_date)
-    console.log('today: ' + today)
     if (compare_date == today) {
-      console.log('true: ')
       this.cart = JSON.parse(localStorage.getItem('cart'));
     } else if (compare_date != today) {
-      console.log('false: ')
       localStorage.removeItem('cart');
       localStorage.removeItem('date');
     }
